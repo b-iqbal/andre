@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" style="height: 100%;">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,37 +9,35 @@
     <style>
         /* Custom CSS for refined styling (animations removed) */
 
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
         body {
             overflow-x: hidden;
             /* Prevent horizontal scrollbars */
             background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
             font-family: 'Inter', sans-serif;
             /* Use Inter font as per instructions */
-            /* Removed min-height: 100vh; to allow natural content flow and scrolling */
-            /* Removed flexbox and vertical centering to fix scrolling issue */
+            /* Removed min-height, flexbox, and vertical centering from body */
             text-align: center;
-            padding-bottom: 40px;
-            /* Add some padding at the bottom for content */
-            padding-top: 40px;
-            /* Add padding to the top to ensure content isn't flush with the very top edge */
+            padding-bottom: 40px; /* Add some padding at the bottom for content */
+            /* Removed padding-top from body to allow main to define its own top spacing */
         }
 
         /* Main content section (animations removed) */
         main {
-            padding: 0 1rem;
-            /* Add horizontal padding for responsiveness */
-            /* Removed min-height to allow content to take its natural height */
-            display: flex;
-            /* Use flexbox to center content within main's natural height */
-            flex-direction: column;
-            /* Stack content vertically */
-            justify-content: center;
-            /* Center content vertically within main */
-            align-items: center;
-            /* Center content horizontally within main */
-            text-align: center;
-            /* Center text within main content */
+            padding: 0 1rem; /* Add horizontal padding for responsiveness */
+            padding-top: 80px; /* Add top padding to the main section itself */
+            padding-bottom: 60px; /* Add bottom padding to the main section */
+            display: flex; /* Use flexbox to center content within main's natural height */
+            flex-direction: column; /* Stack content vertically */
+            justify-content: center; /* Center content vertically within main */
+            align-items: center; /* Center content horizontally within main */
+            text-align: center; /* Center text within main content */
             margin: 0 auto; /* Ensure main section is horizontally centered */
+            min-height: 100vh; /* Ensure main section takes at least full viewport height */
+            box-sizing: border-box; /* Include padding in height calculation */
         }
 
         /* Profile Image Container - now just for static display */
@@ -72,7 +69,7 @@
         }
 
         .profile-front {
-            background-image: url('images/profile1.png'); /* Placeholder image */
+            background-image: url('profile1.png'); /* Placeholder image */
             z-index: 2;
         }
 
@@ -109,7 +106,6 @@
             background-color: #DC2626;
             /* Darker red */
         }
-
 
         /* Text Styling (animations removed) */
         p {
@@ -149,14 +145,13 @@
         section {
             background-color: rgba(30, 41, 59, 0.8);
             padding: 40px 20px;
-            margin-top: 60px;
+            margin-top: 60px; /* Space between sections */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             max-width: 900px;
             width: 100%;
             text-align: left;
-            margin-bottom: 40px;
-            /* Space between sections */
+            margin-bottom: 40px; /* Space between sections and footer */
         }
 
         section h2 {
@@ -215,7 +210,7 @@
             color: #4CAF50;
         }
 
-        /* Contact form styling */
+        /* Contact form styling (removed, but keeping some general styles if needed for other inputs) */
         .form-group {
             margin-bottom: 15px;
         }
@@ -237,8 +232,7 @@
             background-color: #2D3748;
             color: #E2E8F0;
             outline: none;
-            transition: border-color 0.3s ease;
-            /* Keep transition for input focus */
+            transition: border-color 0.3s ease; /* Keep transition for input focus */
         }
 
         .form-group input[type="text"]:focus,
@@ -254,8 +248,7 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease;
-            /* Keep transition for button background */
+            transition: background-color 0.3s ease; /* Keep transition for button background */
             border: none;
         }
 
@@ -364,6 +357,9 @@
     <p class="text-base md:text-lg text-gray-300 mb-6">Head Coach – Leinster Lightning & Bolts<br>Pathway Manager – Leinster Cricket</p>
     <div class="space-x-4 flex flex-wrap justify-center">
         <!-- Buttons with basic hover effects -->
+        <a href="index.html" class="animated-button bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            Home
+        </a>
         <a href="#about" class="animated-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
             About Me
         </a>
@@ -538,44 +534,31 @@
 <!-- Contact Section -->
 <section id="contact" class="container mx-auto px-4">
     <h2>Contact Andre</h2>
-    <p class="text-center mb-6">Reach out to Andre for coaching inquiries, partnerships, or any questions you may have.</p>
+    <p class="text-center mb-6">For coaching inquiries, partnerships, or any questions, please reach out directly via email or connect on social media.</p>
 
-    <div class="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-8 md:space-y-0">
-        <!-- Contact Details -->
-        <div class="w-full md:w-1/2 text-center md:text-left">
-            <h3 class="text-xl font-bold mb-4 text-center md:text-left">Get in Touch Directly</h3>
-            <p class="mb-4"><strong>Email:</strong> <a href="mailto:andre.botha@coaching.ie" class="text-green-400 hover:text-green-300 transition-colors">andre.botha@coaching.ie</a></p>
-            <div class="social-icons mt-6 flex justify-center md:justify-start space-x-6">
+    <div class="flex flex-col justify-center items-center space-y-8">
+        <!-- Contact Details: Email -->
+        <div class="w-full text-center">
+            <h3 class="text-xl font-bold mb-4">Email Address</h3>
+            <p class="mb-4 text-lg">
+                <strong>Email:</strong>
+                <a href="mailto:andre.botha@abcd123.ie" class="text-green-400 hover:text-green-300 transition-colors">andre.botha@coaching.ie</a>
+            </p>
+        </div>
+
+        <!-- Social Icons
+        <div class="w-full text-center">
+            <h3 class="text-xl font-bold mb-4">Connect on Social Media</h3>
+            <div class="social-icons mt-6 flex justify-center space-x-6">
                 <a href="https://twitter.com/boatsy21" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
                     <i class="fab fa-twitter"></i>
                 </a>
-                <!-- Add more social icons as needed -->
                 <a href="https://www.linkedin.com/in/andre-botha-cricket/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                     <i class="fab fa-linkedin"></i>
                 </a>
             </div>
             <p class="text-sm text-gray-400 mt-4">(Follow Andre on Twitter: @boatsy21)</p>
-        </div>
-
-        <!-- Contact Form -->
-        <div class="w-full md:w-1/2">
-            <h3 class="text-xl font-bold mb-4 text-center">Send a Message</h3>
-            <form action="#" method="POST" class="w-full">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" class="rounded-lg" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="your.email@example.com" class="rounded-lg" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your message here..." class="rounded-lg" required></textarea>
-                </div>
-                <button type="submit" class="submit-button w-full rounded-lg">Send Message</button>
-            </form>
-        </div>
+        </div> -->
     </div>
 
     <div class="back-to-top">
@@ -602,8 +585,8 @@
         <a href="#contact">Contact</a>
     </div>
 <!--    <div class="social-icons mb-4">-->
-<!--        <a href="https://twitter.com/boatsy21" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
-<!--        <a href="https://www.linkedin.com/in/andre-botha-cricket/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>-->
+<!--        <a href="" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>-->
+<!--        <a href="" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>-->
 <!--        &lt;!&ndash; Add other social media links as needed &ndash;&gt;-->
 <!--    </div>-->
     <p>&copy; 2025 Andre Botha. All rights reserved.</p>
