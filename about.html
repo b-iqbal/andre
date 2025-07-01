@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andre Botha | Coach & Cricketer</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for animations and refined styling */
+
+        /* Ensure the body takes full viewport height and prevents scrollbars during initial animations */
+        body {
+            overflow-x: hidden;
+            /* Prevent horizontal scrollbars */
+            /* Apply a subtle gradient background for a modern look */
+            background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            font-family: 'Inter', sans-serif;
+            /* Use Inter font as per instructions */
+            min-height: 100vh;
+            /* Ensure body takes at least full viewport height */
+            display: flex;
+            /* Use flexbox for main content alignment */
+            flex-direction: column;
+            /* Stack content vertically */
+            justify-content: center;
+            /* Center content vertically */
+            align-items: center;
+            /* Center content horizontally */
+            text-align: center;
+            /* Center text within main content */
+            padding-bottom: 40px;
+            /* Add some padding at the bottom for content */
+        }
+
+        /* Main content section animation for a smooth entrance */
+        main {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+            animation-delay: 0.3s;
+            /* Delay the animation slightly after page load */
+            padding: 0 1rem;
+            /* Add horizontal padding for responsiveness */
+        }
+
+        /* Keyframe animation for fading in and sliding up */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Image Container - sets up the 3D perspective for the flip effect */
+        .profile-container {
+            width: 150px;
+            height: 150px;
+            perspective: 1000px;
+            /* Defines the depth of the 3D scene */
+            margin-bottom: 24px;
+            /* Space between image and text content */
+            border-radius: 50%;
+            /* Ensures the container is circular */
+            overflow: hidden;
+            /* Hides any overflow from the circular shape */
+        }
+
+        /* Profile Card - the element that will flip */
+        .profile-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            /* Ensures children are positioned in 3D space */
+            transition: transform 0.6s ease-in-out;
+            /* Smooth transition for the flip */
+        }
+
+        /* Flip the card on hover */
+        .profile-container:hover .profile-card {
+            transform: rotateY(180deg);
+            /* Rotates the card 180 degrees around the Y-axis */
+        }
+
+        /* Common styles for the front and back faces of the profile card */
+        .profile-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            /* Hide the back of the element when rotated */
+            backface-visibility: hidden;
+            border-radius: 50%;
+            /* Makes the faces circular */
+            background-size: cover;
+            /* Ensures the background image covers the element */
+            background-position: center;
+            /* Centers the background image */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            /* Adds a subtle shadow */
+            border: 4px solid #4CAF50;
+            /* Green border for visual emphasis */
+        }
+
+        /* Front face of the profile card */
+        .profile-front {
+            /* Placeholder for the first profile image. Replace with your actual image URL. */
+            background-image: url('images/profile1.png');
+            z-index: 2;
+            /* Ensures the front face is on top initially */
+        }
+
+        /* Back face of the profile card */
+        .profile-back {
+            /* Placeholder for the second profile image. Replace with your actual image URL. */
+            background-image: url('images/profile2.png');
+            transform: rotateY(180deg);
+            /* Initially rotated to be hidden behind the front face */
+        }
+
+        /* Button Animations - applies smooth transitions to all buttons */
+        .animated-button {
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Initial subtle shadow */
+        }
+
+        /* Button hover effects */
+        .animated-button:hover {
+            transform: translateY(-3px);
+            /* Lifts the button slightly on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            /* Deeper shadow on hover */
+        }
+
+        /* Specific hover background colors for consistency */
+        .bg-green-500:hover {
+            background-color: #43A047;
+            /* Slightly darker green on hover */
+        }
+
+        .bg-gray-700:hover {
+            background-color: #4A5568;
+            /* Darker gray on hover */
+        }
+
+        .bg-blue-500:hover {
+            background-color: #1976D2;
+            /* Slightly darker blue on hover */
+        }
+
+        /* Text Animations (Subtle fade-in for paragraphs) */
+        p {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Staggered animation delays for paragraphs */
+        p:nth-of-type(1) {
+            animation-delay: 0.6s;
+        }
+
+        p:nth-of-type(2) {
+            animation-delay: 0.9s;
+        }
+
+        /* Keyframe animation for simple fading in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Heading styling enhancements */
+        h1 {
+            letter-spacing: 1.5px;
+            /* Adds space between letters */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            /* Initial text shadow */
+            animation: textGlow 1.5s infinite alternate;
+            /* Subtle pulsing glow effect */
+        }
+
+        /* Keyframe animation for text glow */
+        @keyframes textGlow {
+            from {
+                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            }
+            to {
+                text-shadow: 2px 2px 12px rgba(76, 175, 80, 0.7);
+            }
+            /* Greenish glow effect */
+        }
+
+        /* Adjusting the color for text-gray-300 for better contrast on the gradient background */
+        .text-gray-300 {
+            color: #CBD5E0;
+        }
+
+        /* Ensuring buttons have rounded corners and are centrally aligned if they contain icons */
+        .rounded-full {
+            border-radius: 9999px;
+            /* Makes buttons fully rounded */
+        }
+
+        .inline-flex {
+            display: inline-flex;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        /* Section Specific Styling */
+        section {
+            background-color: rgba(30, 41, 59, 0.8);
+            /* Slightly transparent dark background */
+            padding: 40px 20px;
+            margin-top: 60px;
+            /* Space from the main hero section */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 900px;
+            /* Max width for readability */
+            width: 100%;
+            /* Full width up to max-width */
+            text-align: left;
+            /* Align text left within the section */
+            opacity: 0;
+            /* Initially hidden for animation */
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+            animation-delay: 1.2s;
+            /* Delay after main content loads */
+            margin-bottom: 40px; /* Space between sections */
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+            /* Green heading */
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        section h3 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2196F3;
+            /* Blue subheadings */
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid rgba(76, 175, 80, 0.5);
+            /* Green underline */
+            padding-bottom: 5px;
+        }
+
+        section p,
+        section ul,
+        section table {
+            color: #E2E8F0;
+            /* Lighter text color */
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        section li {
+            margin-bottom: 8px;
+        }
+
+        /* Table styling for stats */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(76, 175, 80, 0.2);
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        /* Contact form styling */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #E2E8F0;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #4A5568;
+            background-color: #2D3748;
+            color: #E2E8F0;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="email"]:focus,
+        .form-group textarea:focus {
+            border-color: #4CAF50;
+        }
+
+        .submit-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            border: none;
+        }
+
+        .submit-button:hover {
+            background-color: #43A047;
+            transform: translateY(-2px);
+        }
+
+        /* Back to top link */
+        .back-to-top {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .back-to-top a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .back-to-top a:hover {
+            color: #2196F3;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: rgba(17, 24, 39, 0.9); /* Slightly darker, almost opaque background */
+            color: #CBD5E0;
+            padding: 30px 20px;
+            margin-top: 60px;
+            width: 100%;
+            text-align: center;
+            border-top: 1px solid rgba(76, 175, 80, 0.2);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        footer .footer-links a {
+            color: #4CAF50;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer .footer-links a:hover {
+            color: #2196F3;
+        }
+
+        .social-icons a {
+            color: #E2E8F0;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #4CAF50;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+                /* Adjust heading size for mobile */
+            }
+            .space-x-4 {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                /* Space out buttons vertically */
+            }
+            .animated-button {
+                width: 100%;
+                /* Full width buttons on mobile */
+            }
+            section {
+                padding: 20px 15px;
+                /* Adjust padding for mobile */
+                margin-top: 40px;
+            }
+            section h2 {
+                font-size: 2rem;
+            }
+            section h3 {
+                font-size: 1.5rem;
+            }
+            footer .footer-links {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-900 text-white font-sans h-screen flex flex-col justify-center items-center text-center px-4">
+<!-- Centered Hero Section -->
+<main id="home-section">
+    <!-- Profile Image with Hover Animation -->
+    <div class="profile-container mx-auto">
+        <div class="profile-card">
+            <div class="profile-face profile-front"></div>
+            <div class="profile-face profile-back"></div>
+        </div>
+    </div>
+
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">Andre Botha</h1>
+    <p class="text-lg md:text-xl italic mb-2">Transforming players. Elevating performance.</p>
+    <p class="text-base md:text-lg text-gray-300 mb-6">Head Coach – Leinster Lightning & Bolts<br>Pathway Manager – Leinster Cricket</p>
+    <div class="space-x-4 flex flex-wrap justify-center">
+        <!-- Buttons with animated-button class for hover effects and rounded-full for styling -->
+        <a href="#about" class="animated-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            About Me
+        </a>
+        <a href="#stats" class="animated-button bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            Career Stats
+        </a>
+        <a href="#coaching" class="animated-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            Coaching
+        </a>
+        <a href="#testimonials" class="animated-button bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            Testimonials
+        </a>
+        <a href="#contact" class="animated-button bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
+            Contact
+        </a>
+    </div>
+</main>
+
+<!-- About Me Section -->
+<section id="about" class="container mx-auto px-4">
+    <h2>About Andre Botha</h2>
+
+    <p>Andre Botha is a highly respected figure in the world of cricket, known for his distinguished career as both a player and a coach. Born in Johannesburg on September 12, 1975, Andre later became a naturalised Irish cricketer, making a significant impact on the sport in Ireland. His journey is marked by dedication, strategic brilliance, and an unwavering commitment to developing talent.</p>
+
+    <h3>Playing Career: A Legacy of Excellence</h3>
+    <p>A formidable all-rounder, Andre Botha was a cornerstone of the Irish national team for many years. A left-hand bat and right-arm medium pacer, he amassed 142 international caps, scoring 3,606 runs and taking 176 wickets.</p>
+    <ul>
+        <li><strong>International Debut:</strong> Debuted in the Ireland setup in 2001.</li>
+        <li><strong>ODI Debut:</strong> Top-scored with 52 in his One Day International (ODI) debut for Ireland against England in 2006.</li>
+        <li><strong>World Cup Appearances:</strong> Represented Ireland in multiple Cricket World Cups, including the historic 2007 tournament where Ireland famously defeated Pakistan and Bangladesh.</li>
+        <li><strong>Key Performances:</strong>
+            <ul>
+                <li>Scored a near-century against Netherlands in a pivotal ICC tournament match.</li>
+                <li>Achieved a highest score of 186 against Scotland.</li>
+                <li>Was part of a record 360-run partnership.</li>
+            </ul>
+        </li>
+        <li><strong>Playing Style:</strong> Known for his disciplined medium-fast bowling, often opening the attack, and his aggressive yet reliable middle-order batting. His leadership on the field was also a defining characteristic.</li>
+    </ul>
+    <p>Andre Botha retired from international cricket after the 2011 World Cup, concluding a career that included 141 matches, 13 fifties, and 6 hundreds.</p>
+
+    <h3>Awards & Recognition</h3>
+    <ul>
+        <li><strong>Irish Cricketer of the Year:</strong> Awarded in 2004 for his outstanding contributions.</li>
+        <li><strong>ICC Intercontinental Cup Triumphs:</strong> Integral to Ireland's success in this tournament, boasting a 66 average and a career-best score of 97.</li>
+    </ul>
+
+    <div class="back-to-top">
+        <a href="#home-section">Back to Top</a>
+    </div>
+</section>
+
+<!-- Career Highlights & Stats Section -->
+<section id="stats" class="container mx-auto px-4">
+    <h2>Career Highlights & Stats</h2>
+    <p>A summary of Andre Botha's impressive international career statistics:</p>
+
+    <div class="overflow-x-auto">
+        <table>
+            <thead>
+            <tr>
+                <th>Category</th>
+                <th>Value</th>
+                <th>Notes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>International Caps</td>
+                <td>142</td>
+                <td>Across all formats for Ireland</td>
+            </tr>
+            <tr>
+                <td>Total Runs</td>
+                <td>3,606</td>
+                <td>@ 27.74 average</td>
+            </tr>
+            <tr>
+                <td>Total Wickets</td>
+                <td>176</td>
+                <td>@ 21.99 average</td>
+            </tr>
+            <tr>
+                <td>Highest Score (Batting)</td>
+                <td>186</td>
+                <td>Vs Scotland</td>
+            </tr>
+            <tr>
+                <td>Fifties</td>
+                <td>13</td>
+                <td>In 141 matches played until 2011 retirement</td>
+            </tr>
+            <tr>
+                <td>Hundreds</td>
+                <td>6</td>
+                <td>In 141 matches played until 2011 retirement</td>
+            </tr>
+            <tr>
+                <td>Record Partnership</td>
+                <td>360 runs</td>
+                <td>Career best partnership</td>
+            </tr>
+            <tr>
+                <td>ODI Debut Score</td>
+                <td>52</td>
+                <td>Top-scored vs England (2006)</td>
+            </tr>
+            <tr>
+                <td>ICC Intercontinental Cup Average</td>
+                <td>66</td>
+                <td>Career-best score of 97 in the tournament</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="back-to-top">
+        <a href="#home-section">Back to Top</a>
+    </div>
+</section>
+
+<!-- Coaching Journey & Philosophy Section -->
+<section id="coaching" class="container mx-auto px-4">
+    <h2>Coaching Journey & Philosophy</h2>
+
+    <h3>Coaching Journey: From Player to Mentor</h3>
+    <p>Post-retirement from international cricket, Andre Botha transitioned seamlessly into coaching, beginning his journey in South Africa, including stints with Gauteng.</p>
+    <ul>
+        <li><strong>Balbriggan CC Success:</strong> Returned to Ireland as Head Coach of Balbriggan CC, leading them to unprecedented success with back-to-back league and cup wins, including the 2021 Championship, 2022 Premier League, and the T20 Alan Murray Cup.</li>
+        <li><strong>Leinster Lightning & Bolts:</strong>
+            <ul>
+                <li><strong>June 2023:</strong> Appointed interim Head Coach for Leinster Lightning & Bolts.</li>
+                <li><strong>March 2024:</strong> Secured a permanent 2-year contract as Leinster Lightning Head Coach & Pathway Manager, overseeing senior and U23 pathway teams while retaining club duties.</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h3>Coaching Philosophy: Shaping Future Stars</h3>
+    <p>Andre Botha brings a wealth of experience and a clear vision to his coaching roles, focused on attracting and developing the next generation of cricketing talent. His philosophy is built on:</p>
+    <ul>
+        <li><strong>Pathway Development:</strong> Nurturing future talent through structured U23 district and interprovincial T20/50 fixtures, ensuring a clear progression path for aspiring cricketers.</li>
+        <li><strong>Holistic Player Growth:</strong> Combining technical expertise drawn from his all-rounder background with a servant-leadership approach, prioritising comprehensive player growth that encompasses technical, mental, physical, and tactical aspects.</li>
+        <li><strong>Proven Success & Strategic Acumen:</strong> Evidenced by his achievements across club and provincial systems, he demonstrates success in both long-term team development and short-format strategy, preparing players for diverse match situations.</li>
+        <li><strong>Building Resilience & Passion:</strong> Instilling mental fortitude, the ability to perform under pressure, and fostering a deep love for the game, ensuring players enjoy their development journey.</li>
+    </ul>
+    <p>His vision is to cultivate cricketers who are not only technically proficient but also possess the character, leadership, and strategic thinking required to excel at the highest levels of the sport.</p>
+
+    <div class="back-to-top">
+        <a href="#home-section">Back to Top</a>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="container mx-auto px-4">
+    <h2>What Others Say</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+            <p class="italic text-lg mb-4">"Andre spear-headed Balbriggan’s unprecedented success, which led to multiple titles and All‑Ireland appearances. His impact was immediate and profound."</p>
+            <p class="font-semibold text-right">- Cricket Leinster Official</p>
+        </div>
+        <div class="bg-gray-700 p-6 rounded-lg shadow-md">
+            <p class="italic text-lg mb-4">"Andre has brought a wealth of experience and expertise to our setup. We are excited to see him expand his role to develop the next cohort of talent."</p>
+            <p class="font-semibold text-right">- Leinster Cricket Management</p>
+        </div>
+    </div>
+    <div class="back-to-top">
+        <a href="#home-section">Back to Top</a>
+    </div>
+</section>
+
+
+<!-- Contact Section -->
+<section id="contact" class="container mx-auto px-4">
+    <h2>Contact Andre</h2>
+    <p class="text-center mb-6">Reach out to Andre for coaching inquiries, partnerships, or any questions you may have.</p>
+
+    <div class="flex flex-col md:flex-row justify-center items-start md:space-x-8 space-y-8 md:space-y-0">
+        <!-- Contact Details -->
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <h3 class="text-xl font-bold mb-4 text-center md:text-left">Get in Touch Directly</h3>
+            <p class="mb-4"><strong>Email:</strong> <a href="mailto:andre.botha@coaching.ie" class="text-green-400 hover:text-green-300 transition-colors">andre.botha@coaching.ie</a></p>
+            <div class="social-icons mt-6 flex justify-center md:justify-start space-x-6">
+                <a href="https://twitter.com/boatsy21" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <!-- Add more social icons as needed -->
+                <a href="https://www.linkedin.com/in/andre-botha-cricket/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+            <p class="text-sm text-gray-400 mt-4">(Follow Andre on Twitter: @boatsy21)</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="w-full md:w-1/2">
+            <h3 class="text-xl font-bold mb-4 text-center">Send a Message</h3>
+            <form action="#" method="POST" class="w-full">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" class="rounded-lg" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" class="rounded-lg" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message here..." class="rounded-lg" required></textarea>
+                </div>
+                <button type="submit" class="submit-button w-full rounded-lg">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="back-to-top">
+        <a href="#home-section">Back to Top</a>
+    </div>
+</section>
+
+<!-- Book Coaching Section (Placeholder - still hidden) -->
+<section id="book" class="container mx-auto px-4" style="display: none;">
+    <h2>Book Coaching Session</h2>
+    <p class="text-center">This is where the booking system or details would go.</p>
+    <div class="back-to-top">
+        <a href="#home-section">Back to Top</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-links mb-4 flex flex-wrap justify-center gap-4">
+        <a href="#home-section">Home</a>
+        <a href="#about">Bio</a>
+        <a href="#stats">Stats</a>
+        <a href="#coaching">Coaching</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="social-icons mb-4">
+        <a href="https://twitter.com/boatsy21" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/andre-botha-cricket/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <!-- Add other social media links as needed -->
+    </div>
+    <p>&copy; 2024 Andre Botha. All rights reserved.</p>
+</footer>
+
+</body>
+
+</html>
