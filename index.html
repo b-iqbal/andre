@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andre Botha | Coach & Cricketer</title>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS for animations and refined styling */
+
+        /* Ensure the body takes full viewport height and prevents scrollbars during initial animations */
+        body {
+            overflow: hidden;
+            /* Apply a subtle gradient background for a modern look */
+            background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            font-family: 'Inter', sans-serif; /* Use Inter font as per instructions */
+        }
+
+        /* Main content section animation for a smooth entrance */
+        main {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+            animation-delay: 0.3s; /* Delay the animation slightly after page load */
+        }
+
+        /* Keyframe animation for fading in and sliding up */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Image Container - sets up the 3D perspective for the flip effect */
+        .profile-container {
+            width: 150px;
+            height: 150px;
+            perspective: 1000px; /* Defines the depth of the 3D scene */
+            margin-bottom: 24px; /* Space between image and text content */
+            border-radius: 50%; /* Ensures the container is circular */
+            overflow: hidden; /* Hides any overflow from the circular shape */
+        }
+
+        /* Profile Card - the element that will flip */
+        .profile-card {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d; /* Ensures children are positioned in 3D space */
+            transition: transform 0.6s ease-in-out; /* Smooth transition for the flip */
+        }
+
+        /* Flip the card on hover */
+        .profile-container:hover .profile-card {
+            transform: rotateY(180deg); /* Rotates the card 180 degrees around the Y-axis */
+        }
+
+        /* Common styles for the front and back faces of the profile card */
+        .profile-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden; /* Hide the back of the element when rotated */
+            backface-visibility: hidden;
+            border-radius: 50%; /* Makes the faces circular */
+            background-size: cover; /* Ensures the background image covers the element */
+            background-position: center; /* Centers the background image */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+            border: 4px solid #4CAF50; /* Green border for visual emphasis */
+        }
+
+        /* Front face of the profile card */
+        .profile-front {
+            /* Placeholder for the first profile image. Replace with your actual image URL. */
+            background-image: url('images/profile2.png');
+            z-index: 2; /* Ensures the front face is on top initially */
+        }
+
+        /* Back face of the profile card */
+        .profile-back {
+            /* Placeholder for the second profile image. Replace with your actual image URL. */
+            background-image: url('images/profile1.png');
+            transform: rotateY(180deg); /* Initially rotated to be hidden behind the front face */
+        }
+
+        /* Button Animations - applies smooth transitions to all buttons */
+        .animated-button {
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial subtle shadow */
+        }
+
+        /* Button hover effects */
+        .animated-button:hover {
+            transform: translateY(-3px); /* Lifts the button slightly on hover */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+        }
+
+        /* Specific hover background colors for consistency */
+        .bg-green-500:hover {
+            background-color: #43A047; /* Slightly darker green on hover */
+        }
+
+        .bg-gray-700:hover {
+            background-color: #4A5568; /* Darker gray on hover */
+        }
+
+        .bg-blue-500:hover {
+            background-color: #1976D2; /* Slightly darker blue on hover */
+        }
+
+        /* Text Animations (Subtle fade-in for paragraphs) */
+        p {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Staggered animation delays for paragraphs */
+        p:nth-of-type(1) { animation-delay: 0.6s; }
+        p:nth-of-type(2) { animation-delay: 0.9s; }
+
+        /* Keyframe animation for simple fading in */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Heading styling enhancements */
+        h1 {
+            letter-spacing: 1.5px; /* Adds space between letters */
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Initial text shadow */
+            animation: textGlow 1.5s infinite alternate; /* Subtle pulsing glow effect */
+        }
+
+        /* Keyframe animation for text glow */
+        @keyframes textGlow {
+            from { text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); }
+            to { text-shadow: 2px 2px 12px rgba(76, 175, 80, 0.7); } /* Greenish glow effect */
+        }
+
+        /* Adjusting the color for text-gray-300 for better contrast on the gradient background */
+        .text-gray-300 {
+            color: #CBD5E0;
+        }
+
+        /* Ensuring buttons have rounded corners and are centrally aligned if they contain icons */
+        .rounded-full {
+            border-radius: 9999px; /* Makes buttons fully rounded */
+        }
+        .inline-flex {
+            display: inline-flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .justify-center {
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white font-sans h-screen flex flex-col justify-center items-center text-center px-4">
+    <!-- Centered Hero Section -->
+    <main>
+        <!-- Profile Image with Hover Animation -->
+        <div class="profile-container mx-auto">
+            <div class="profile-card">
+                <div class="profile-face profile-front"></div>
+                <div class="profile-face profile-back"></div>
+            </div>
+        </div>
+
+        <h1 class="text-5xl md:text-6xl font-bold mb-4">Andre Botha</h1>
+        <p class="text-lg md:text-xl italic mb-2">Transforming players. Elevating performance.</p>
+        <p class="text-base md:text-lg text-gray-300 mb-6">Head Coach – Leinster Lightning & Bolts<br>Pathway Manager – Leinster Cricket</p>
+        <div class="space-x-4">
+            <!-- Buttons with animated-button class for hover effects and rounded-full for styling -->
+            <a href="#about" class="animated-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
+                About Me
+            </a>
+            <a href="#contact" class="animated-button bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
+                Contact
+            </a>
+            <a href="#book" class="animated-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
+                Book Coaching
+            </a>
+        </div>
+    </main>
+</body>
+
+</html>
