@@ -12,7 +12,7 @@
 
         /* Ensure the body takes full viewport height and prevents scrollbars during initial animations */
         body {
-            overflow: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrollbars */
             /* Apply a subtle gradient background for a modern look */
             background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
             font-family: 'Inter', sans-serif; /* Use Inter font as per instructions */
@@ -24,6 +24,15 @@
             transform: translateY(20px);
             animation: fadeInSlideUp 1s ease-out forwards;
             animation-delay: 0.3s; /* Delay the animation slightly after page load */
+            min-height: 100vh; /* Ensure main takes at least full viewport height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 1rem;
+            padding-top: 80px; /* Adjusted padding to ensure content starts lower */
+            padding-bottom: 60px;
+            box-sizing: border-box; /* Include padding in height calculation */
         }
 
         /* Keyframe animation for fading in and sliding up */
@@ -79,14 +88,14 @@
         /* Front face of the profile card */
         .profile-front {
             /* Placeholder for the first profile image. Replace with your actual image URL. */
-            background-image: url('images/profile2.png');
+            background-image: url('images/profile2.png'); /* Placeholder image for demonstration */
             z-index: 2; /* Ensures the front face is on top initially */
         }
 
         /* Back face of the profile card */
         .profile-back {
             /* Placeholder for the second profile image. Replace with your actual image URL. */
-            background-image: url('images/profile1.png');
+            background-image: url('images/profile1.png'); /* Placeholder image for demonstration */
             transform: rotateY(180deg); /* Initially rotated to be hidden behind the front face */
         }
 
@@ -162,36 +171,229 @@
         .justify-center {
             justify-content: center;
         }
+
+        /* --- Popup Specific Styles --- */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it's on top of everything */
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Start hidden */
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .popup-card {
+            background-color: #2D3748; /* Darker background for the card */
+            color: #E2E8F0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            transform: scale(0.9); /* Start slightly smaller */
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .popup-overlay.popup-show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .popup-overlay.popup-show .popup-card {
+            transform: scale(1);
+        }
+
+        .popup-card h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .popup-card p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            opacity: 1; /* Override main p animation for popup */
+            animation: none;
+        }
+
+        .popup-card a {
+            color: #2196F3; /* Blue for links */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .popup-card a:hover {
+            color: #4CAF50; /* Green on hover */
+        }
+
+        .popup-close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #CBD5E0;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .popup-close-button:hover {
+            color: #FF4444; /* Red on hover */
+        }
+
+        /* Ensure smooth scrolling behavior is still present */
+        html {
+            scroll-behavior: smooth;
+        }
     </style>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="bg-gray-900 text-white font-sans h-screen flex flex-col justify-center items-center text-center px-4">
-    <!-- Centered Hero Section -->
-    <main>
-        <!-- Profile Image with Hover Animation -->
-        <div class="profile-container mx-auto">
-            <div class="profile-card">
-                <div class="profile-face profile-front"></div>
-                <div class="profile-face profile-back"></div>
-            </div>
+<!-- Centered Hero Section -->
+<main class="mx-auto max-w-4xl">
+    <!-- Profile Image with Hover Animation -->
+    <div class="profile-container mx-auto">
+        <div class="profile-card">
+            <div class="profile-face profile-front"></div>
+            <div class="profile-face profile-back"></div>
         </div>
+    </div>
 
-        <h1 class="text-5xl md:text-6xl font-bold mb-4">Andre Botha</h1>
-        <p class="text-lg md:text-xl italic mb-2">Transforming players. Elevating performance.</p>
-        <p class="text-base md:text-lg text-gray-300 mb-6">Head Coach – Leinster Lightning & Bolts<br>Pathway Manager – Leinster Cricket</p>
-        <div class="space-x-4">
-            <!-- Buttons with animated-button class for hover effects and rounded-full for styling -->
-            <a href="about.html" class="animated-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
-                About Me
+    <h1 class="text-5xl md:text-6xl font-bold mb-4">Andre Botha</h1>
+    <p class="text-lg md:text-xl italic mb-2">Transforming players. Elevating performance.</p>
+    <p class="text-base md:text-lg text-gray-300 mb-6">Head Coach – Leinster Lightning & Bolts<br>Pathway Manager – Leinster Cricket</p>
+    <div class="space-x-4 flex flex-wrap justify-center">
+        <!-- Buttons with animated-button class for hover effects and rounded-full for styling -->
+        <a href="about.html" class="animated-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            About Me
+        </a>
+        <button id="contact-button" class="animated-button bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
+            Contact
+        </button>
+        <button id="book-coaching-button" class="animated-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
+            Book Coaching
+        </button>
+    </div>
+</main>
+
+<!-- Contact Popup Card -->
+<div id="contact-popup-overlay" class="popup-overlay">
+    <div id="contact-popup-card" class="popup-card">
+        <button id="contact-popup-close-button" class="popup-close-button">&times;</button>
+        <h2 class="mb-4">Get in Touch</h2>
+        <p><strong>Email:</strong> <a href="mailto:andre.botha@coaching.ie">andre.botha@coaching.ie</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+353871234567">+353 87 123 4567</a></p>
+        <div class="social-icons mt-6 flex justify-center space-x-6">
+            <a href="https://twitter.com/boatsy21" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <i class="fab fa-twitter"></i>
             </a>
-            <a href="contact.html" class="animated-button bg-gray-700 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
-                Contact
-            </a>
-            <a href="bookcoaching.html" class="animated-button bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center">
-                Book Coaching
+            <a href="https://www.linkedin.com/in/andre-botha-cricket/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <i class="fab fa-linkedin"></i>
             </a>
         </div>
-    </main>
+    </div>
+</div>
+
+<!-- Book Coaching Popup Card -->
+<div id="book-coaching-popup-overlay" class="popup-overlay">
+    <div id="book-coaching-popup-card" class="popup-card">
+        <button id="book-coaching-popup-close-button" class="popup-close-button">&times;</button>
+        <h2 class="mb-4">Book Coaching</h2>
+        <p class="text-xl font-bold text-yellow-400 mb-4">Coming Soon!</p>
+        <p>Our online booking system is currently under development.</p>
+        <p>In the meantime, please reach out via email to arrange a coaching session:</p>
+        <p><strong>Email:</strong> <a href="mailto:andre.botha@coaching.ie">andre.botha@abcd123.ie</a></p>
+    </div>
+</div>
+
+
+<script>
+        // Get references to elements for Contact Popup
+        const contactButton = document.getElementById('contact-button');
+        const contactPopupOverlay = document.getElementById('contact-popup-overlay');
+        const contactPopupCard = document.getElementById('contact-popup-card');
+        const contactCloseButton = document.getElementById('contact-popup-close-button');
+
+        // Get references to elements for Book Coaching Popup
+        const bookCoachingButton = document.getElementById('book-coaching-button');
+        const bookCoachingPopupOverlay = document.getElementById('book-coaching-popup-overlay');
+        const bookCoachingPopupCard = document.getElementById('book-coaching-popup-card');
+        const bookCoachingCloseButton = document.getElementById('book-coaching-popup-close-button');
+
+        const body = document.body;
+
+        // Function to show a generic popup
+        function showPopup(overlayId) {
+            const overlay = document.getElementById(overlayId);
+            if (overlay) {
+                overlay.classList.add('popup-show');
+                body.style.overflow = 'hidden'; // Prevent scrolling background
+            }
+        }
+
+        // Function to hide a generic popup
+        function hidePopup(overlayId) {
+            const overlay = document.getElementById(overlayId);
+            if (overlay) {
+                overlay.classList.remove('popup-show');
+                // Only re-enable body scroll if no other popup is open
+                if (!contactPopupOverlay.classList.contains('popup-show') && !bookCoachingPopupOverlay.classList.contains('popup-show')) {
+                    body.style.overflow = '';
+                }
+            }
+        }
+
+        // Event listener for the Contact button
+        contactButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            hidePopup('book-coaching-popup-overlay'); // Close other popup if open
+            showPopup('contact-popup-overlay');
+        });
+
+        // Event listener for the Book Coaching button
+        bookCoachingButton.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            hidePopup('contact-popup-overlay'); // Close other popup if open
+            showPopup('book-coaching-popup-overlay');
+        });
+
+        // Event listener for the close button inside the Contact popup
+        contactCloseButton.addEventListener('click', function() {
+            hidePopup('contact-popup-overlay');
+        });
+
+        // Event listener for the close button inside the Book Coaching popup
+        bookCoachingCloseButton.addEventListener('click', function() {
+            hidePopup('book-coaching-popup-overlay');
+        });
+
+        // Event listener for clicking on the overlay (outside the card) for Contact popup
+        contactPopupOverlay.addEventListener('click', function(event) {
+            if (event.target === contactPopupOverlay) {
+                hidePopup('contact-popup-overlay');
+            }
+        });
+
+        // Event listener for clicking on the overlay (outside the card) for Book Coaching popup
+        bookCoachingPopupOverlay.addEventListener('click', function(event) {
+            if (event.target === bookCoachingPopupOverlay) {
+                hidePopup('book-coaching-popup-overlay');
+            }
+        });
+    </script>
 </body>
 
 </html>

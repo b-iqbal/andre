@@ -40,43 +40,77 @@
             box-sizing: border-box; /* Include padding in height calculation */
         }
 
-        /* Profile Image Container - now just for static display */
+        /* Main content section animation for a smooth entrance */
+        main {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s ease-out forwards;
+            animation-delay: 0.3s; /* Delay the animation slightly after page load */
+        }
+
+        /* Keyframe animation for fading in and sliding up */
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Profile Image Container - sets up the 3D perspective for the flip effect */
         .profile-container {
             width: 150px;
             height: 150px;
-            margin-bottom: 24px;
-            border-radius: 50%;
-            overflow: hidden;
+            perspective: 1000px; /* Defines the depth of the 3D scene */
+            margin-bottom: 24px; /* Space between image and text content */
+            border-radius: 50%; /* Ensures the container is circular */
+            overflow: hidden; /* Hides any overflow from the circular shape */
         }
 
-        /* Profile Card - 3D flip removed, now static */
+        /* Profile Card - the element that will flip */
         .profile-card {
             width: 100%;
             height: 100%;
             position: relative;
+            transform-style: preserve-3d; /* Ensures children are positioned in 3D space */
+            transition: transform 0.6s ease-in-out; /* Smooth transition for the flip */
         }
 
-        /* Profile faces - back face is now hidden by default, no flip */
+        /* Flip the card on hover */
+        .profile-container:hover .profile-card {
+            transform: rotateY(180deg); /* Rotates the card 180 degrees around the Y-axis */
+        }
+
+
+       /* Common styles for the front and back faces of the profile card */
         .profile-face {
             position: absolute;
             width: 100%;
             height: 100%;
-            border-radius: 50%;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            border: 4px solid #4CAF50;
+            -webkit-backface-visibility: hidden; /* Hide the back of the element when rotated */
+            backface-visibility: hidden;
+            border-radius: 50%; /* Makes the faces circular */
+            background-size: cover; /* Ensures the background image covers the element */
+            background-position: center; /* Centers the background image */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Adds a subtle shadow */
+            border: 4px solid #4CAF50; /* Green border for visual emphasis */
         }
 
+        /* Front face of the profile card */
         .profile-front {
-            background-image: url('profile1.png'); /* Placeholder image */
-            z-index: 2;
+            /* Placeholder for the first profile image. Replace with your actual image URL. */
+            background-image: url('images/profile2.png');
+            z-index: 2; /* Ensures the front face is on top initially */
         }
 
+        /* Back face of the profile card */
         .profile-back {
-            background-image: url('images/profile2.png'); /* Placeholder image */
-            display: none;
-            /* Explicitly hide the back face as there's no flip animation */
+            /* Placeholder for the second profile image. Replace with your actual image URL. */
+            background-image: url('images/profile1.png');
+            transform: rotateY(180deg); /* Initially rotated to be hidden behind the front face */
         }
 
         /* Button Styling (animations removed, basic hover remains) */
@@ -542,7 +576,7 @@
             <h3 class="text-xl font-bold mb-4">Email Address</h3>
             <p class="mb-4 text-lg">
                 <strong>Email:</strong>
-                <a href="mailto:andre.botha@abcd123.ie" class="text-green-400 hover:text-green-300 transition-colors">andre.botha@coaching.ie</a>
+                <a href="mailto:andre.botha@abcd123.ie" class="text-green-400 hover:text-green-300 transition-colors">andre.botha@abcd123.ie</a>
             </p>
         </div>
 
