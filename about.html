@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;">
 
 <head>
     <meta charset="UTF-8">
@@ -8,197 +8,119 @@
     <!-- Tailwind CSS CDN for utility classes -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom CSS for animations and refined styling */
+        /* Custom CSS for refined styling (animations removed) */
 
-        /* Ensure the body takes full viewport height and prevents scrollbars during initial animations */
         body {
             overflow-x: hidden;
             /* Prevent horizontal scrollbars */
-            /* Apply a subtle gradient background for a modern look */
             background-image: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
             font-family: 'Inter', sans-serif;
             /* Use Inter font as per instructions */
-            min-height: 100vh;
-            /* Ensure body takes at least full viewport height */
+            /* Removed min-height: 100vh; to allow natural content flow and scrolling */
+            /* Removed flexbox and vertical centering to fix scrolling issue */
+            text-align: center;
+            padding-bottom: 40px;
+            /* Add some padding at the bottom for content */
+            padding-top: 40px;
+            /* Add padding to the top to ensure content isn't flush with the very top edge */
+        }
+
+        /* Main content section (animations removed) */
+        main {
+            padding: 0 1rem;
+            /* Add horizontal padding for responsiveness */
+            /* Removed min-height to allow content to take its natural height */
             display: flex;
-            /* Use flexbox for main content alignment */
+            /* Use flexbox to center content within main's natural height */
             flex-direction: column;
             /* Stack content vertically */
             justify-content: center;
-            /* Center content vertically */
+            /* Center content vertically within main */
             align-items: center;
-            /* Center content horizontally */
+            /* Center content horizontally within main */
             text-align: center;
             /* Center text within main content */
-            padding-bottom: 40px;
-            /* Add some padding at the bottom for content */
+            margin: 0 auto; /* Ensure main section is horizontally centered */
         }
 
-        /* Main content section animation for a smooth entrance */
-        main {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInSlideUp 1s ease-out forwards;
-            animation-delay: 0.3s;
-            /* Delay the animation slightly after page load */
-            padding: 0 1rem;
-            /* Add horizontal padding for responsiveness */
-        }
-
-        /* Keyframe animation for fading in and sliding up */
-        @keyframes fadeInSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Profile Image Container - sets up the 3D perspective for the flip effect */
+        /* Profile Image Container - now just for static display */
         .profile-container {
             width: 150px;
             height: 150px;
-            perspective: 1000px;
-            /* Defines the depth of the 3D scene */
             margin-bottom: 24px;
-            /* Space between image and text content */
             border-radius: 50%;
-            /* Ensures the container is circular */
             overflow: hidden;
-            /* Hides any overflow from the circular shape */
         }
 
-        /* Profile Card - the element that will flip */
+        /* Profile Card - 3D flip removed, now static */
         .profile-card {
             width: 100%;
             height: 100%;
             position: relative;
-            transform-style: preserve-3d;
-            /* Ensures children are positioned in 3D space */
-            transition: transform 0.6s ease-in-out;
-            /* Smooth transition for the flip */
         }
 
-        /* Flip the card on hover */
-        .profile-container:hover .profile-card {
-            transform: rotateY(180deg);
-            /* Rotates the card 180 degrees around the Y-axis */
-        }
-
-        /* Common styles for the front and back faces of the profile card */
+        /* Profile faces - back face is now hidden by default, no flip */
         .profile-face {
             position: absolute;
             width: 100%;
             height: 100%;
-            -webkit-backface-visibility: hidden;
-            /* Hide the back of the element when rotated */
-            backface-visibility: hidden;
             border-radius: 50%;
-            /* Makes the faces circular */
             background-size: cover;
-            /* Ensures the background image covers the element */
             background-position: center;
-            /* Centers the background image */
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            /* Adds a subtle shadow */
             border: 4px solid #4CAF50;
-            /* Green border for visual emphasis */
         }
 
-        /* Front face of the profile card */
         .profile-front {
-            /* Placeholder for the first profile image. Replace with your actual image URL. */
-            background-image: url('images/profile1.png');
+            background-image: url('images/profile.png'); /* Placeholder image */
             z-index: 2;
-            /* Ensures the front face is on top initially */
         }
 
-        /* Back face of the profile card */
         .profile-back {
-            /* Placeholder for the second profile image. Replace with your actual image URL. */
-            background-image: url('images/profile2.png');
-            transform: rotateY(180deg);
-            /* Initially rotated to be hidden behind the front face */
+            background-image: url('images/profile2.png'); /* Placeholder image */
+            display: none;
+            /* Explicitly hide the back face as there's no flip animation */
         }
 
-        /* Button Animations - applies smooth transitions to all buttons */
+        /* Button Styling (animations removed, basic hover remains) */
         .animated-button {
-            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            /* Initial subtle shadow */
-        }
-
-        /* Button hover effects */
-        .animated-button:hover {
-            transform: translateY(-3px);
-            /* Lifts the button slightly on hover */
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            /* Deeper shadow on hover */
         }
 
         /* Specific hover background colors for consistency */
         .bg-green-500:hover {
             background-color: #43A047;
-            /* Slightly darker green on hover */
         }
 
         .bg-gray-700:hover {
             background-color: #4A5568;
-            /* Darker gray on hover */
         }
 
         .bg-blue-500:hover {
             background-color: #1976D2;
-            /* Slightly darker blue on hover */
         }
 
-        /* Text Animations (Subtle fade-in for paragraphs) */
+        .bg-purple-600:hover {
+            background-color: #6D28D9;
+            /* Darker purple */
+        }
+
+        .bg-red-500:hover {
+            background-color: #DC2626;
+            /* Darker red */
+        }
+
+
+        /* Text Styling (animations removed) */
         p {
-            opacity: 0;
-            animation: fadeIn 1s ease-out forwards;
+            /* No animation properties */
         }
 
-        /* Staggered animation delays for paragraphs */
-        p:nth-of-type(1) {
-            animation-delay: 0.6s;
-        }
-
-        p:nth-of-type(2) {
-            animation-delay: 0.9s;
-        }
-
-        /* Keyframe animation for simple fading in */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        /* Heading styling enhancements */
+        /* Heading styling (animations removed) */
         h1 {
             letter-spacing: 1.5px;
-            /* Adds space between letters */
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            /* Initial text shadow */
-            animation: textGlow 1.5s infinite alternate;
-            /* Subtle pulsing glow effect */
-        }
-
-        /* Keyframe animation for text glow */
-        @keyframes textGlow {
-            from {
-                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-            }
-            to {
-                text-shadow: 2px 2px 12px rgba(76, 175, 80, 0.7);
-            }
-            /* Greenish glow effect */
+            /* No animation properties */
         }
 
         /* Adjusting the color for text-gray-300 for better contrast on the gradient background */
@@ -209,7 +131,6 @@
         /* Ensuring buttons have rounded corners and are centrally aligned if they contain icons */
         .rounded-full {
             border-radius: 9999px;
-            /* Makes buttons fully rounded */
         }
 
         .inline-flex {
@@ -224,35 +145,24 @@
             justify-content: center;
         }
 
-        /* Section Specific Styling */
+        /* Section Specific Styling (animations removed) */
         section {
             background-color: rgba(30, 41, 59, 0.8);
-            /* Slightly transparent dark background */
             padding: 40px 20px;
             margin-top: 60px;
-            /* Space from the main hero section */
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             max-width: 900px;
-            /* Max width for readability */
             width: 100%;
-            /* Full width up to max-width */
             text-align: left;
-            /* Align text left within the section */
-            opacity: 0;
-            /* Initially hidden for animation */
-            transform: translateY(20px);
-            animation: fadeInSlideUp 1s ease-out forwards;
-            animation-delay: 1.2s;
-            /* Delay after main content loads */
-            margin-bottom: 40px; /* Space between sections */
+            margin-bottom: 40px;
+            /* Space between sections */
         }
 
         section h2 {
             font-size: 2.5rem;
             font-weight: bold;
             color: #4CAF50;
-            /* Green heading */
             margin-bottom: 20px;
             text-align: center;
             text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
@@ -262,11 +172,9 @@
             font-size: 1.8rem;
             font-weight: bold;
             color: #2196F3;
-            /* Blue subheadings */
             margin-top: 30px;
             margin-bottom: 15px;
             border-bottom: 2px solid rgba(76, 175, 80, 0.5);
-            /* Green underline */
             padding-bottom: 5px;
         }
 
@@ -274,7 +182,6 @@
         section ul,
         section table {
             color: #E2E8F0;
-            /* Lighter text color */
             line-height: 1.7;
             margin-bottom: 15px;
         }
@@ -331,6 +238,7 @@
             color: #E2E8F0;
             outline: none;
             transition: border-color 0.3s ease;
+            /* Keep transition for input focus */
         }
 
         .form-group input[type="text"]:focus,
@@ -346,13 +254,13 @@
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease;
+            /* Keep transition for button background */
             border: none;
         }
 
         .submit-button:hover {
             background-color: #43A047;
-            transform: translateY(-2px);
         }
 
         /* Back to top link */
@@ -374,7 +282,7 @@
 
         /* Footer Styling */
         footer {
-            background-color: rgba(17, 24, 39, 0.9); /* Slightly darker, almost opaque background */
+            background-color: rgba(17, 24, 39, 0.9);
             color: #CBD5E0;
             padding: 30px 20px;
             margin-top: 60px;
@@ -410,21 +318,17 @@
         @media (max-width: 768px) {
             h1 {
                 font-size: 3rem;
-                /* Adjust heading size for mobile */
             }
             .space-x-4 {
                 display: flex;
                 flex-direction: column;
                 gap: 1rem;
-                /* Space out buttons vertically */
             }
             .animated-button {
                 width: 100%;
-                /* Full width buttons on mobile */
             }
             section {
                 padding: 20px 15px;
-                /* Adjust padding for mobile */
                 margin-top: 40px;
             }
             section h2 {
@@ -443,13 +347,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body class="bg-gray-900 text-white font-sans h-screen flex flex-col justify-center items-center text-center px-4">
+<body class="bg-gray-900 text-white font-sans text-center px-4">
 <!-- Centered Hero Section -->
-<main id="home-section">
-    <!-- Profile Image with Hover Animation -->
+<main id="home-section" class="mx-auto max-w-4xl">
+    <!-- Profile Image (static, no flip) -->
     <div class="profile-container mx-auto">
         <div class="profile-card">
             <div class="profile-face profile-front"></div>
+            <!-- The back face is now hidden by default as there's no flip animation -->
             <div class="profile-face profile-back"></div>
         </div>
     </div>
@@ -458,7 +363,7 @@
     <p class="text-lg md:text-xl italic mb-2">Transforming players. Elevating performance.</p>
     <p class="text-base md:text-lg text-gray-300 mb-6">Head Coach – Leinster Lightning & Bolts<br>Pathway Manager – Leinster Cricket</p>
     <div class="space-x-4 flex flex-wrap justify-center">
-        <!-- Buttons with animated-button class for hover effects and rounded-full for styling -->
+        <!-- Buttons with basic hover effects -->
         <a href="#about" class="animated-button bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-full inline-flex items-center justify-center mb-2 md:mb-0">
             About Me
         </a>
@@ -701,7 +606,7 @@
 <!--        <a href="https://www.linkedin.com/in/andre-botha-cricket/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>-->
 <!--        &lt;!&ndash; Add other social media links as needed &ndash;&gt;-->
 <!--    </div>-->
-    <p>&copy; 2024 Andre Botha. All rights reserved.</p>
+    <p>&copy; 2025 Andre Botha. All rights reserved.</p>
 </footer>
 
 </body>
